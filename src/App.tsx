@@ -1,4 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
+
+declare global {
+  interface Window { gtag?: (...args: unknown[]) => void }
+}
 import './App.css'
 import useStartSession from './hooks/useStartSession'
 import useSendQuestion from './hooks/useSendQuestion'
@@ -34,6 +38,7 @@ function App() {
     sendQuestion(question, {
       onSuccess: (data) => {
         setMessages(prev => [...prev, { role: 'assistant', content: data.answer }])
+        window.gtag?.('event', 'translation_sent', { session_id: sessionId })
       }
     })
     textareaRef.current?.focus()
