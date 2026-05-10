@@ -90,7 +90,7 @@ function App() {
 
         {isConnectionError && (
           <div className="error-banner">
-            <span>Could not connect to the backend at http://127.0.0.1:8000</span>
+            <span>Could not connect to the backend. Please try again.</span>
             <button className="error-retry" onClick={() => startSession()}>Retry</button>
           </div>
         )}
